@@ -5,7 +5,7 @@ Brick[] bricks;
 int brickCount = 6;
 
 int startTime;
-int gameDuration = 60000; // 60 seconds
+int gameDuration = 60000; 
 boolean gameOver = false;
 
 void setup() {
@@ -66,4 +66,5 @@ void resetBricks() {
     bricks[i].active = true;
   }
 }
+
 
