@@ -4,6 +4,10 @@ Brick[] bricks;
 
 int brickCount = 6;
 
+int startTime;
+int gameDuration = 60000; // 60 seconds
+boolean gameOver = false;
+
 void setup() {
   size(600, 400);
 
@@ -14,10 +18,17 @@ void setup() {
   for (int i = 0; i < brickCount; i++) {
     bricks[i] = new Brick(80 + i * 80, 60);
   }
+startTime = millis();
 }
 
 void draw() {
   background(240);
+
+if (!gameOver && millis() - startTime >= gameDuration) {
+    gameOver = true;
+  }
+
+  if (!gameOver) {
 
   paddle.update();
   paddle.display();
@@ -32,4 +43,27 @@ void draw() {
       ball.checkBrick(bricks[i]);
     }
   }
+ int destroyedBricks = 0;
+    for (int i = 0; i < bricks.length; i++) {
+      if (!bricks[i].active) {
+        destroyedBricks++;
+      }
+    }
+ if (destroyedBricks == bricks.length) {
+      resetBricks();
+    }
+ } else {
+
+textAlign(CENTER);
+    textSize(32);
+    fill(0);
+    text("Time's Up!", width/2, height/2);
+
 }
+}
+void resetBricks() {
+  for (int i = 0; i < bricks.length; i++) {
+    bricks[i].active = true;
+  }
+}
+
