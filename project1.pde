@@ -57,6 +57,11 @@ void draw() {
         ball.checkBrick(bricks[i]);
       }
     }
+    // Brick reset check
+    if (allBricksDestroyed()) {
+  resetBricks();
+}
+
 
     // Score
     fill(200);
